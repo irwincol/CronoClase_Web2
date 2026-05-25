@@ -1,111 +1,107 @@
-import React from "react";
+import React, { useState } from "react";
 import "../styles/StyleLogInEstudiante.css";
-import { useState, useEffect } from "react";
-import { end_points, fakeRoutes } from "../services/api";
+import { end_points } from "../services/api";
 import { alertaGeneral, redirectAlert } from "../helpers/alerts";
 import { saveLocalStorage } from "../helpers/local-storage";
+import { Link } from "react-router-dom";
 
 export function LogInProfesor() {
-  let [userProfesor, setUserProfesor] = useState("");
-  let [passwordProfesor, setPasswordProfesor] = useState("");
-  const [profesores, setProfesores] = useState([]);
-
-  function getProfesores() {
-    // Asumiendo que existe esta ruta en tu api.js, si no, cámbiala a la correcta
-    fetch(fakeRoutes.logInProfesor )
-      .then((response) => response.json())
-      .then((data) => setProfesores(data))
-      .catch((error) => console.log(error));
-  }
-
-  useEffect(() => {
-    getProfesores();
-  }, []);
-
-  function findUser() {
-    let foundProfesor = profesores.find(
-      (item) =>
-        userProfesor === item.email && passwordProfesor === item.documentoID,
-    );
-    return foundProfesor;
-  }
+  const [emailProfesor, setEmailProfesor] = useState("");
+  const [passwordProfesor, setPasswordProfesor] = useState("");
 
   function signInProfesor(e) {
     e.preventDefault();
 
-    const user = findUser();
-
-    if (userProfesor === "" || passwordProfesor === "") {
+    if (emailProfesor === "" || passwordProfesor === "") {
       return alertaGeneral("Error", "Contraseña o email vacío", "warning");
-    } else if (user) {
-      saveLocalStorage("profesor", user);
-      redirectAlert(
-        `Hola Prof. ${user.nombre}`,
-        "Bienvenido, será redireccionado a su panel de control",
-        "/panel-profesor", // Ruta sugerida actualizada
-        "success",
-      );
-      return;
-    } else {
-      return alertaGeneral("Error", "Contraseña o email inválidos", "error");
     }
+
+    const payload = {
+      email: emailProfesor,
+      password: passwordProfesor
+    };
+
+    fetch(end_points.profesorLogin, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Contraseña o email inválidos");
+        }
+        return response.json();
+      })
+      .then((user) => {
+        saveLocalStorage("profesor", user);
+        redirectAlert(
+          `Hola Prof. ${user.nombre}`,
+          "Bienvenido, será redireccionado a su panel de control",
+          "/panel-profesor",
+          "success"
+        );
+      })
+      .catch((error) => {
+        alertaGeneral("Error de Credenciales", error.message, "error");
+      });
   }
 
   return (
     <div className="log-in-estudainte-style">
-      <div className="h-96 flex items-center justify-center bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800">
+      <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-r from-blue-600 via-indigo-700 to-purple-800 p-4 m-0">
         <div className="relative">
           <div className="absolute -top-2 -left-2 -right-2 -bottom-2 rounded-lg bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-600 shadow-lg animate-pulse"></div>
 
           <div
             id="form-container"
-            className="bg-white p-16 rounded-lg shadow-2xl w-80 relative z-10 transform transition duration-500 ease-in-out"
+            className="bg-white p-10 sm:p-12 rounded-xl shadow-2xl w-80 sm:w-96 relative z-10"
           >
-            <h2 className="text-center text-3xl font-bold mb-10 text-gray-800">
+            <h2 className="text-center text-3xl font-extrabold mb-8 text-gray-800">
               Profesor
             </h2>
 
-            <form className="space-y-5">
+            <form onSubmit={signInProfesor} className="space-y-4">
               <input
-                className="w-full h-12 border border-gray-800 px-3 rounded-lg"
+                className="w-full h-12 border border-gray-400 px-3 rounded-lg text-sm bg-white"
                 placeholder="Email Institucional"
                 id="email"
                 name="email"
-                type="text"
-                onChange={(e) => {
-                  setUserProfesor(e.target.value);
-                }}
+                type="email"
+                value={emailProfesor}
+                onChange={(e) => setEmailProfesor(e.target.value)}
+                required
               />
 
               <input
-                className="w-full h-12 border border-gray-800 px-3 rounded-lg"
-                placeholder="Password"
+                className="w-full h-12 border border-gray-400 px-3 rounded-lg text-sm bg-white"
+                placeholder="Contraseña"
                 id="password"
                 name="password"
                 type="password"
-                onChange={(e) => {
-                  setPasswordProfesor(e.target.value);
-                }}
+                value={passwordProfesor}
+                onChange={(e) => setPasswordProfesor(e.target.value)}
+                required
               />
 
               <button
                 type="submit"
-                className="w-full h-12 bg-indigo-600 hover:bg-indigo-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors"
-                onClick={(e) => signInProfesor(e)}
+                className="w-full h-12 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-lg transition-colors duration-200 cursor-pointer flex items-center justify-center text-base"
               >
-                Sign in
+                Entrar
               </button>
 
-              <button
-                type="button"
-                className="w-full h-12 bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline transition-colors"
+              <Link
+                to="/formulario-profesor"
+                className="w-full h-12 bg-gray-500 hover:bg-gray-600 text-white font-bold rounded-lg transition-colors duration-200 cursor-pointer flex items-center justify-center text-base"
               >
-                Register
-              </button>
+                Registrarse
+              </Link>
 
-              <div className="text-center">
-                <a className="text-indigo-600 hover:text-indigo-900 text-sm" href="#">
-                  ¿Olvidó su contraseña?
+              <div className="text-center pt-2">
+                <a className="text-[#493d9e] hover:underline text-sm font-semibold" href="#">
+                  ¿Olvidaste tu contraseña?
                 </a>
               </div>
             </form>

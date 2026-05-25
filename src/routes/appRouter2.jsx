@@ -8,6 +8,8 @@ import { MainView } from '../pages/MainView'
 import { LogInEstudiante } from '../pages/LogInEstudiante'
 import { LogInProfesor } from '../pages/LogInProfesor'
 import PageMaterias from '../pages/PageMaterias'
+import ConfiguracionEstudiante from '../pages/ConfiguracionEstudiante'
+import MisEntregas from '../pages/MisEntregas'
 import { Children } from 'react'
 
 
@@ -45,8 +47,16 @@ export let appRouter2 = [
 
     {path: "/calendario-estudiante/",
         element: <MainView />
-        
-    
+    },
+
+    {
+        path: "/configuracion-estudiante",
+        element: <ConfiguracionEstudiante />
+    },
+
+    {
+        path: "/mis-entregas",
+        element: <MisEntregas />
     },
 
     {path: "/panel-materias",

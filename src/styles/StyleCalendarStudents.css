@@ -2,18 +2,18 @@
     display: grid;
 
     /* Primera columna fija y días flexibles */
-    grid-template-columns: 140px repeat(5, 1fr);
+    grid-template-columns: 180px repeat(5, 1fr);
 
     font-family: "Rhodium Libre", serif;
 
     width: 100%;
-    max-width: 1200px;
-    margin: 1rem auto;
+    max-width: 1300px;
+    margin: 1.5rem auto;
 
-    /* Filas adaptables al contenido */
-    grid-auto-rows: minmax(60px, auto);
+    /* Filas adaptables al contenido (más altas) */
+    grid-auto-rows: minmax(90px, auto);
 
-    gap: 0.5rem;
+    gap: 0.75rem;
     padding: 0 1rem; /* evita que toque los bordes en móvil */
 }
 
