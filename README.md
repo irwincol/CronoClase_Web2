@@ -1,61 +1,101 @@
-# Descripción del Proyecto
+# CronoClase Web2
 
-CronoClase_Web2 es una aplicación web diseñada para gestionar horarios y actividades académicas de manera eficiente. Este proyecto utiliza React y Vite para ofrecer una experiencia de usuario rápida y moderna.
+CronoClase Web2 es una aplicación web para la gestión de actividades académicas, pensada para dos perfiles principales: estudiante y profesor. Permite iniciar sesión, administrar materias, revisar calendarios, registrar entregas y gestionar evaluaciones desde una interfaz construida con React y Vite.
 
-# NOTA: Para el ingreso en el LogIn de estudiante, el correo corresponde al correo del estudiante y la contraseña es el documentoID del estudiante. Los datos para ingresar se encuentran en la carpeta data, archivo estudiantes.json
+## Funcionalidades principales
 
-## Requisitos del Entorno y Versiones de Software
+- Inicio de sesión diferenciado para estudiante y profesor.
+- Paneles separados según el rol del usuario.
+- Calendario académico para estudiantes.
+- Gestión de materias, entregas y configuración del perfil del estudiante.
+- Panel del profesor para carga y seguimiento de actividades.
+- Consumo de una API local para autenticación y operaciones académicas.
 
-Para garantizar que el proyecto se ejecute correctamente en cualquier entorno, asegúrate de tener las siguientes versiones de software instaladas:
+## Tecnologías usadas
 
-- **Node.js**: 18.x o superior
-- **npm**: 9.x o superior
-- **Vite**: 4.x o superior
-- **React**: 18.x o superior
+- React 19
+- Vite 7
+- React Router DOM 7
+- Bootstrap 5
+- Tailwind CSS 4
+- SweetAlert2
 
-## Pasos para Configurar el Proyecto Localmente
+## Requisitos
 
-Sigue estos pasos para ejecutar el proyecto en tu máquina local:
+Antes de ejecutar el proyecto, verifica tener instalado lo siguiente:
 
-1. **Clonar el repositorio**:
-   ```bash
-   git clone <URL_DEL_REPOSITORIO>
-   ```
+- Node.js 18 o superior
+- npm 9 o superior
+- La API de CronoClase ejecutándose localmente en `http://localhost:8080`
 
-2. **Navegar al directorio del proyecto**:
-   ```bash
-   cd CronoClase_Web2
-   ```
+## Instalación y ejecución
 
-3. **Instalar dependencias**:
-   ```bash
-   npm install
-   ```
+1. Clona el repositorio.
+2. Entra a la carpeta del proyecto.
+3. Instala las dependencias.
+4. Inicia el servidor de desarrollo.
 
-4. **Iniciar el servidor de desarrollo**:
-   ```bash
-   npm run dev
-   ```
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd CronoClase_Web2
+npm install
+npm run dev
+```
 
-5. **Abrir el proyecto en el navegador**:
-   El servidor de desarrollo estará disponible en `http://localhost:5173` (o el puerto indicado en la terminal).
+Luego abre la URL que indique Vite, normalmente `http://localhost:5173`.
 
-6. **Compilar para producción** (opcional):
-   ```bash
-   npm run build
-   ```
+## Scripts disponibles
 
-   Los archivos compilados estarán disponibles en el directorio `dist/`.
+```bash
+npm run dev
+npm run build
+npm run preview
+npm run lint
+```
 
-## Tabla de Autores
+## API local
 
-| Nombre              | Usuario de GitHub       |
-|---------------------|-------------------------|
-| Paula Gil           | [@GGP113](https://github.com/GGP113) |
-| Irwin Colmenarez    | [@irwincol](https://github.com/irwincol) |
-| Carlos Martinez     | [@CMARTINEZ-95](https://github.com/CMARTINEZ-95) |
-| Estiben Manco       | [@Estibenmanco31](https://github.com/Estibenmanco31) |
-| Victor Berrio       | [@Vastrocode72](https://github.com/Vastrocode72) |
+El frontend consume la API definida en `src/services/api.js`, por lo que el backend debe estar disponible en `http://localhost:8080/api`.
+
+## Rutas principales
+
+- `/` Inicio de selección de rol
+- `/inicio-sesion-estudiante` Login de estudiante
+- `/inicio-sesion-profesor` Login de profesor
+- `/calendario-estudiante` Calendario del estudiante
+- `/mis-entregas` Vista de entregas del estudiante
+- `/configuracion-estudiante` Configuración del perfil del estudiante
+- `/panel-profesor` Panel principal del profesor
+- `/panel-carga-actividades` Carga de actividades del profesor
+
+## Nota de acceso
+
+Para las pruebas locales, algunas vistas usan datos de ejemplo o credenciales cargadas desde la API o los archivos del proyecto. En el login de estudiante, el correo corresponde al correo del estudiante y la contraseña puede coincidir con el documento o el valor configurado en los datos de prueba.
+
+## Documentación de pruebas
+
+Si necesitas un flujo paso a paso para validar el frontend, revisa [docs/guia_pruebas_frontend.md](docs/guia_pruebas_frontend.md).
+
+## Estructura general
+
+```text
+src/
+  components/
+  data/
+  helpers/
+  pages/
+  routes/
+  services/
+  styles/
+```
+
+## Autores
+
+| Nombre | Usuario de GitHub |
+| --- | --- |
+| Paula Gil | [@GGP113](https://github.com/GGP113) |
+| Irwin Colmenarez | [@irwincol](https://github.com/irwincol) |
+| Carlos Martinez | [@CMARTINEZ-95](https://github.com/CMARTINEZ-95) |
+| Estiben Manco | [@Estibenmanco31](https://github.com/Estibenmanco31) |
+| Victor Berrio | [@Vastrocode72](https://github.com/Vastrocode72) |
 | Sebastian Hernandez | [@Sebas-1013](https://github.com/Sebas-1013) |
-
----
