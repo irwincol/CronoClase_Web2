@@ -9,6 +9,7 @@ import { LogInEstudiante } from '../pages/LogInEstudiante'
 import { LogInProfesor } from '../pages/LogInProfesor'
 import PageMaterias from '../pages/PageMaterias'
 import ConfiguracionEstudiante from '../pages/ConfiguracionEstudiante'
+import ConfiguracionProfesor from '../pages/ConfiguracionProfesor'
 import MisEntregas from '../pages/MisEntregas'
 import { Children } from 'react'
 
@@ -52,6 +53,11 @@ export let appRouter2 = [
     {
         path: "/configuracion-estudiante",
         element: <ConfiguracionEstudiante />
+    },
+
+    {
+        path: "/configuracion-profesor",
+        element: <ConfiguracionProfesor />
     },
 
     {

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "../styles/NavBar.css";
 
 import vistaEstudiantesImg from "../assets/images/graduado.png";
+import calendarioImg from "../assets/images/calendario.png";
 import panelCargaImg from "../assets/images/acortar.png";
 import cerrarSesionImg from "../assets/images/lock-fill.svg";
 
@@ -31,9 +32,14 @@ export default function NavBarProfesor() {
   return (
     <nav className="navCalendar">
       <div className="nav-buttons">
-        <Link to="/panel-profesor" className="nav-button">
-          <img src={vistaEstudiantesImg} alt="Mis Grupos" />
+        <Link to="/configuracion-profesor" className="nav-button" title="Editar Perfil">
+          <img src={vistaEstudiantesImg} alt="Editar Perfil" />
           {userProfesor ? `Prof. ${userProfesor.nombre}` : "Profesor"}
+        </Link>
+
+        <Link to="/panel-profesor" className="nav-button" title="Mis Grupos">
+          <img src={calendarioImg} alt="Mis Grupos" />
+          Mis Grupos
         </Link>
 
         <Link to="/panel-carga-actividades" className="nav-button">
