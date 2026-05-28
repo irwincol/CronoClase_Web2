@@ -1,4 +1,4 @@
-const URL_BASE = 'https://cronoclase-grupo-5-ku2e.onrender.com';
+const URL_BASE = 'https://cronoclase-grupo-5-ku2e.onrender.com/api';
 
 /* Configuración de todos los endpoints de la API Cronoclase */
 export const end_points = {
