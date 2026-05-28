@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import "../styles/NavBar.css";
 
 import vistaEstudiantesImg from "../assets/images/graduado.png";
+import calendarioImg from "../assets/images/calendario.png";
 import panelCargaImg from "../assets/images/acortar.png";
 import cerrarSesionImg from "../assets/images/lock-fill.svg";
 
@@ -34,6 +35,11 @@ export default function NavBarEstudiante() {
         <Link to="/configuracion-estudiante" className="nav-button" title="Configurar Perfil">
           <img src={vistaEstudiantesImg} alt="Mi Perfil" />
           {userEstudiante?.nombre ?? "Estudiante"}
+        </Link>
+
+        <Link to="/calendario-estudiante" className="nav-button" title="Ver Calendario Semanal">
+          <img src={calendarioImg} alt="Calendario" />
+          Calendario
         </Link>
 
         <Link to="/mis-entregas" className="nav-button">

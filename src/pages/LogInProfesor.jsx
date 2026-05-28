@@ -58,6 +58,14 @@ export function LogInProfesor() {
             id="form-container"
             className="bg-white p-10 sm:p-12 rounded-xl shadow-2xl w-80 sm:w-96 relative z-10"
           >
+            <Link
+              to="/"
+              className="inline-flex items-center text-[#493d9e] hover:text-indigo-800 font-semibold text-sm mb-4 transition-colors"
+              title="Volver a selección de rol"
+            >
+              <span className="text-xl mr-1">←</span> Volver
+            </Link>
+
             <h2 className="text-center text-3xl font-extrabold mb-8 text-gray-800">
               Profesor
             </h2>

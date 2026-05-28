@@ -41,6 +41,10 @@ export default function FormularioEstudiante() {
             return alertaGeneral("Error", "Por favor completa todos los campos obligatorios (*).", "warning");
         }
 
+        if (password.length < 6) {
+            return alertaGeneral("Advertencia", "La contraseña debe tener al menos 6 caracteres.", "warning");
+        }
+
         if (gruposSeleccionados.length === 0) {
             return alertaGeneral("Grupos obligatorios", "Por favor selecciona al menos un grupo o materia en la que deseas participar.", "warning");
         }

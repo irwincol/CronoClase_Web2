@@ -420,14 +420,14 @@ export function PanelCargaActividades() {
                                 </div>
 
                                 {/* Formulario para colocar nota */}
-                                <form onSubmit={(e) => handleCalificarEntrega(e, en.id, ev.id)} className="flex items-center space-x-2 bg-white p-1 rounded-lg border border-gray-300 w-fit">
+                                <form onSubmit={(e) => handleCalificarEntrega(e, en.id, ev.id)} className="flex items-center bg-white rounded-lg border border-gray-300 overflow-hidden flex-shrink-0">
                                   <input
                                     type="number"
                                     step="0.1"
                                     min="0"
                                     max="5"
                                     placeholder="Nota"
-                                    className="w-16 h-8 text-center border-0 focus:ring-0 font-semibold text-gray-800 bg-transparent text-sm"
+                                    className="w-14 h-8 text-center border-0 focus:ring-0 font-semibold text-gray-800 bg-transparent text-xs"
                                     defaultValue={en.nota != null ? en.nota : ''}
                                     onChange={(e) => setCalificacionesTmp(prev => ({
                                       ...prev,
@@ -437,9 +437,9 @@ export function PanelCargaActividades() {
                                   />
                                   <button
                                     type="submit"
-                                    className="flex items-center justify-center whitespace-nowrap px-4 h-8 bg-indigo-600 text-white font-bold rounded-md hover:bg-indigo-700 transition text-xs"
+                                    className="flex items-center justify-center w-8 h-8 bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition text-sm leading-none"
                                   >
-                                    Calificar
+                                    ✓
                                   </button>
                                 </form>
                               </div>

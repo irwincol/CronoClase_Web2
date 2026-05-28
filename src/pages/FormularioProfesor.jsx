@@ -21,6 +21,10 @@ export function FormularioProfesor() {
             return alertaGeneral("Error", "Por favor completa todos los campos obligatorios (*).", "warning");
         }
 
+        if (password.length < 6) {
+            return alertaGeneral("Advertencia", "La contraseña debe tener al menos 6 caracteres.", "warning");
+        }
+
         const payload = {
             nombre,
             email,
